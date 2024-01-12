@@ -1,0 +1,34 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+
+excel_path = r"C:\Users\efean\Downloads\Cleanlenmis.xlsx"
+
+try:
+    df = pd.read_excel(excel_path, sheet_name='output(1)')
+except ValueError:
+    df = pd.read_excel(excel_path)
+
+df['DOCTOR_VISITS'] = pd.to_numeric(df['DOCTOR_VISITS'], errors='coerce')
+
+income_bins = [30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 110000]
+income_labels = ['30k-40k', '40k-50k', '50k-60k', '60k-70k', '70k-80k', '80k-90k', '90k-100k', '100k-110k']
+
+df['Income Classes'] = pd.cut(df['INCOME'], bins=income_bins, labels=income_labels, right=False)
+
+average_premium_by_income = df.groupby('Income Classes')['DOCTOR_VISITS'].mean()
+
+color = '#287D8EFF'
+
+plt.figure(figsize=(10, 6))
+bars = plt.bar(average_premium_by_income.index, average_premium_by_income, color=color, edgecolor='black', alpha=0.7)
+plt.xlabel('Income Classes')
+plt.ylabel('DOCTOR_VISITS')
+plt.title('Doctor Visits by Income Classes')
+
+cbar = plt.colorbar(plt.cm.ScalarMappable(cmap='Blues'), ax=plt.gca())
+cbar.remove()  
+
+plt.xticks(rotation=45, ha='right')
+
+plt.show()
