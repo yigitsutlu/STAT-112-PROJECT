@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-excel_path = r"C:\Users\efean\Downloads\Cleanlenmis.xlsx"
+excel_path = r"C:\Users\Yiğit\Downloads\Cleanlenmis (1).xlsx"
 
 try:
     df = pd.read_excel(excel_path, sheet_name='output(1)')
@@ -32,3 +32,4 @@ cbar.remove()
 plt.xticks(rotation=45, ha='right')
 
 plt.show()
+
