@@ -20,7 +20,7 @@ grouped_data.plot(kind='bar', stacked=True, ax=ax, color=light_colors)
 
 # Set x-axis label, y-axis label, and plot title
 ax.set_xlabel('Year')
-ax.set_ylabel('Number of Policies')
+ax.set_ylabel('Number of Claims')
 ax.set_title('Insurance Types Over the Years')
 
 # Display the plot
