@@ -1,0 +1,28 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+file_path = r'C:\Users\LENOVO\Downloads\gercek_deneme.xlsx'
+
+df = pd.read_excel(file_path)
+
+income_bins = list(range(30000, 110000, 10000)) + [101000]
+income_labels = ['30k-40k', '40k-50k', '50k-60k', '60k-70k', '70k-80k', '80k-90k', '90k-100k', '100k-101k']
+
+
+df['INCOME_BIN'] = pd.cut(df['INCOME'], bins=income_bins, labels=income_labels)
+
+colors = {'Bronze': 'brown', 'Silver': 'grey', 'Gold': 'yellow', 'Excellent': 'orange', 'Fair': 'cyan'}
+
+plt.figure(figsize=(10, 6))
+
+grouped = df.groupby(['INCOME_BIN', 'COVERAGE_LEVEL']).size().unstack()
+
+grouped.plot(kind='bar', stacked=True, color=[colors[col] for col in grouped.columns])
+plt.title('Income Level vs Coverage Level')
+plt.xlabel('Income Level')
+plt.ylabel('Count')
+plt.xticks(rotation=45)
+plt.legend(title='Coverage Level')
+plt.tight_layout()
+
+plt.show()
