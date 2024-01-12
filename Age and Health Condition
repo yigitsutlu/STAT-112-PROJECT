@@ -8,16 +8,20 @@ try:
     df = pd.read_excel(excel_path, sheet_name='output(1)')
 except ValueError:
     df = pd.read_excel(excel_path)
+
 df['AGE'] = pd.to_numeric(df['AGE'], errors='coerce')
 df['HEALTH_CONDITION'] = df['HEALTH_CONDITION'].str.lower()
 
 df = df.dropna(subset=['AGE', 'HEALTH_CONDITION'])
 
 health_condition_order = ['fair', 'good', 'excellent']
+
 plt.figure(figsize=(12, 8))
 
 
-sns.violinplot(x='HEALTH_CONDITION', y='AGE', data=df, order=health_condition_order, palette="Set3")
+colors = ['#287D8EFF', '#482677FF', '#73D055FF']
+
+sns.violinplot(x='HEALTH_CONDITION', y='AGE', data=df, order=health_condition_order, palette=colors)
 
 plt.xlabel('Health Condition')
 plt.ylabel('Age')
