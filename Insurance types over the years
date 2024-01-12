@@ -1,0 +1,19 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_excel(r'C:\Users\LENOVO\Downloads\Cleanlenmis.xlsx')
+
+df['YEAR'] = df['Date'].dt.year
+
+grouped_data = df.groupby(['YEAR', 'INSURANCE_TYPE']).size().unstack()
+
+light_colors = ['#287D8EFF', '#482677FF']  
+
+fig, ax = plt.subplots(figsize=(12, 8))
+grouped_data.plot(kind='bar', stacked=True, ax=ax, color=light_colors)
+
+ax.set_xlabel('Year')
+ax.set_ylabel('Number of Policies')
+ax.set_title('Insurance Types Over the Years')
+
+plt.show()
