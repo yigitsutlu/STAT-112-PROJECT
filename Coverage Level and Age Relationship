@@ -1,7 +1,7 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-df = pd.read_excel(r'C:\Users\LENOVO\Downloads\gercek_deneme.xlsx')
+df = pd.read_excel(r"C:\Users\Yiğit\Downloads\Cleanlenmis (1).xlsx")
 plt.figure(figsize=(10, 6))
 sns.boxplot(x='COVERAGE_LEVEL', y='AGE', data=df, palette='viridis')
 plt.title('Coverage Level/Age Relationship')
