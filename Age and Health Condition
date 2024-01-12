@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-excel_path = r"C:\Users\efean\Downloads\gercek_deneme.xlsx"
+excel_path = r"C:\Users\Yiğit\Downloads\Cleanlenmis (1).xlsx"
 
 try:
     df = pd.read_excel(excel_path, sheet_name='output(1)')
